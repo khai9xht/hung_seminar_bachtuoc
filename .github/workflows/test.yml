@@ -15,6 +15,7 @@ jobs:
       #     node-version: '12.x'
       - run: mkdir -p ~/.ssh
       - run: echo "${{secrets.PRIVATE_KEY}}" > ~/.ssh/private_key
+      - run: chmod 600 ~/.ssh/private_key
       - run: ls -la
       - run: npm install
       - run: npm run build
