@@ -3,15 +3,24 @@ on:
   push:
     branches:
       - master
+
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2 #pull code from repo to virtual machine
-      - name: Use Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: '12.x'
+      # - name: Use Node.js
+      #   uses: actions/setup-node@v1
+      #   with:
+      #     node-version: '12.x'
+      - run: mkdir -p ~/.ssh
+      - run: echo "${{secrets.PRIVATE_KEY}}" > ~/.ssh/private_key
       - run: ls -la
       - run: npm install
       - run: npm run build
+      - name: Send file to server
+        run: rsync -azhv -e 'ssh -i ~/.ssh/private_key -o StrictHostKeyChecking=no' build/* --rsync-path='sudo rsync' $user@$server:$target
+        env:
+          user: root
+          server: 139.162.11.16
+          target: ~/hello-world
