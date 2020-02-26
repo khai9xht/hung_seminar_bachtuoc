@@ -20,8 +20,8 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: Send file to server
-        run: rsync -azhv -e 'ssh -i ~/.ssh/private_key -o StrictHostKeyChecking=no' build/* --rsync-path='sudo rsync' $user@$server:$target
+        run: rsync -azhv -e 'ssh -i ~/.ssh/private_key -o StrictHostKeyChecking=no' build/* --rsync-path='sudo rm -rf /var/www/hello-world && sudo rsync' $user@$server:$target
         env:
           user: root
           server: 139.162.11.16
-          target: /var/www/html/
+          target: /var/www/hello-world
