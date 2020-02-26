@@ -24,4 +24,4 @@ jobs:
         env:
           user: root
           server: 139.162.11.16
-          target: /var/www/hello-world
+          target: ~/hello-world
