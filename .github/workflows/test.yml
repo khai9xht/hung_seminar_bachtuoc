@@ -22,6 +22,6 @@ jobs:
       - name: Send file to server
         run: rsync -azhv -e 'ssh -i ~/.ssh/private_key -o StrictHostKeyChecking=no' build/* --rsync-path='sudo rsync' $user@$server:$target
         env:
-          user: root
-          server: 139.162.11.16
-          target: /var/www/test
+          user: hoangnv
+          server: 118.70.181.146
+          target: /home/hoangnv/
