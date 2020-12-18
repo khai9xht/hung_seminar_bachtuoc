@@ -24,4 +24,5 @@ jobs:
         env:
           user: hoangnv
           server: 118.70.181.146
+          port: 6789
           target: /home/hoangnv/
