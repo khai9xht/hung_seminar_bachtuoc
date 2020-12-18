@@ -20,7 +20,7 @@ jobs:
       - run: npm install
       - run: npm run build
       - name: Send file to server
-        run: rsync -azhv -e 'ssh -i ~/.ssh/private_key -o StrictHostKeyChecking=no' build/* --rsync-path='sudo rsync' $user@$server:$target
+        run: rsync -azhv -e 'ssh -i ~/.ssh/private_key -o StrictHostKeyChecking=no' build/* --rsync-path='sudo rsync' $user@$server:$target -p $port
         env:
           user: hoangnv
           server: 118.70.181.146
